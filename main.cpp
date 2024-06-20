@@ -71,11 +71,22 @@ int main() {
         error = 2;
     }
 
-    if(result>=2147483647){
+    if(result>=2147483647 || result<=-2147483647 ){
         cout << "\nresult is to high";
         return 1;
 
     }
+
+    if(to == "C" && result< -273.15){
+        cout << "\nCan't go lower than zero absolute";
+        error = 2;
+    }
+
+    if(to == "F" && result< -459){
+        cout << "\nCan't go lower than zero absolute";
+        error = 2;
+    }
+
 
         if (error == 1){
     cout <<"\n" << value << " " << from << " = " << result << " " << to << endl;
