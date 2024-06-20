@@ -8,28 +8,79 @@ int main() {
     double value;
     string from, to;
 
-    cout << "Enter the value and units to convert from (e.g., 10 cm): ";
-    cin >> value >> from;
+
+    do{
+        int error = 1;
+    cout << "\nEnter the value and units to convert from (e.g., 10 cm) (type 0 for exit): ";
+    cin >> value;
+        if(value == 0){
+            return 0;
+        }
+    cin >> from;
     cout << "Enter the unit to convert to (e.g., m): ";
     cin >> to;
 
+
     double result;
     if (from == "cm" || from == "m" || from == "km" || from == "dm") {
+        if (to == "cm" || to == "m" || to == "km" || to == "dm"){
         result = convertLength(value, from, to);
+            }
+        else{
+            cout << "\nyou cant convert " << from << "to " << to ;
+            return 1;
+        }
     } else if (from == "kg" || from == "g" || from == "t") {
-        result = convertWeight(value, from, to);
+
+        if (to == "kg" || to == "g" || to == "t" ){
+            result = convertWeight(value, from, to);
+        }
+        else{
+            cout << "\nyou cant convert " << from << "to " << to ;
+            return 1;
+        }
     } else if (from == "s" || from == "min" || from == "h") {
-        result = convertTime(value, from, to);
+
+        if (to == "s" || to == "min" || to == "h" ){
+            result = convertTime(value, from, to);
+        }
+        else{
+            cout << "\nyou cant convert " << from << "to " << to ;
+            return 1;
+        }
     } else if (from == "C" || from == "F" || from == "K") {
-        result = convertTemperature(value, from, to);
+
+        if (to == "C" || to == "F" || to == "K"){
+            result = convertTemperature(value, from, to);
+        }
+        else{
+            cout << "\nyou cant convert " << from << "to " << to ;
+            return 1;
+        }
     } else if (from == "l" || from == "ml") {
-        result = convertVolume(value, from, to);
+
+        if (to == "l" || to == "ml" ){
+            result = convertVolume(value, from, to);;
+        }
+        else{
+            cout << "\nyou cant convert " << from << "to " << to ;
+            return 1;
+        }
     } else {
-        cout << "Invalid units!" << endl;
-        return 0;
+        cout << "\nInvalid units!" << endl;
+        error = 2;
     }
 
-    cout << value << " " << from << " = " << result << " " << to << endl;
+    if(result>=2147483647){
+        cout << "\nresult is to high";
+        return 1;
 
-    return 0;
+    }
+
+        if (error == 1){
+    cout <<"\n" << value << " " << from << " = " << result << " " << to << endl;
+            }
+
+        } while (1==1);
+
 }
